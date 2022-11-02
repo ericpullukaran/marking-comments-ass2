@@ -15,15 +15,22 @@
 .App-link {
   color: #61dafb;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding: 40px
+}
+
 .inputs {
   margin: 0 20px;
-  margin-top: 50px;
   display: grid;
   gap: 20px;
 }
 
 .copy {
-  margin: 50px 20px;
+  margin: 0 20px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 15px;
