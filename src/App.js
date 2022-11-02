@@ -7,7 +7,8 @@ import {
   Typography,
 } from '@mui/material';
 import './App.css';
-import { ContentCopy } from '@mui/icons-material';
+import { ContentCopy, Delete } from '@mui/icons-material';
+import { useLocalStorage } from "./hooks";
 
 const theme = createTheme({
   palette: {
@@ -22,17 +23,17 @@ const theme = createTheme({
 });
 
 function App() {
-  const [ms1, setMs1] = React.useState('');
-  const [ms2, setMs2] = React.useState('');
-  const [ms3, setMs3] = React.useState('');
-  const [ms4, setMs4] = React.useState('');
-  const [ms5, setMs5] = React.useState('');
-  const [ms6, setMs6] = React.useState('');
-  const [ms7, setMs7] = React.useState('');
-  const [bonus, setBonus] = React.useState('');
-  const [responsive, setResponsive] = React.useState('');
-  const [cq, setCq] = React.useState('');
-  const [access, setAccess] = React.useState('');
+  const [ms1, setMs1] = useLocalStorage('ms1','');
+  const [ms2, setMs2] = useLocalStorage('ms2','');
+  const [ms3, setMs3] = useLocalStorage('ms3','');
+  const [ms4, setMs4] = useLocalStorage('ms4','');
+  const [ms5, setMs5] = useLocalStorage('ms5','');
+  const [ms6, setMs6] = useLocalStorage('ms6','');
+  const [ms7, setMs7] = useLocalStorage('ms7','');
+  const [bonus, setBonus] = useLocalStorage('bonus','');
+  const [responsive, setResponsive] = useLocalStorage('responsive','');
+  const [cq, setCq] = useLocalStorage('cq','');
+  const [access, setAccess] = useLocalStorage('access','');
 
   const handleMilestoneCpy = () => {
     let cpyText = '[ Milestone 1: ' + (ms1 ? ms1 : 'N/A') + ' | ';
@@ -44,6 +45,23 @@ function App() {
     cpyText += 'Milestone 7: ' + (ms7 ? ms7 : 'N/A') + ']';
     navigator.clipboard.writeText(cpyText);
   };
+
+  const clearAll = () => {
+    if (!window.confirm('Are you sure you want to clear your hard work?')) {
+     return;
+    }
+    setMs1('')
+    setMs2('')
+    setMs3('')
+    setMs4('')
+    setMs5('')
+    setMs6('')
+    setMs6('')
+    setBonus('')
+    setResponsive('')
+    setCq('')
+    setAccess('')
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -165,6 +183,15 @@ function App() {
               }}
             >
               Access
+            </Button>
+          </div>
+          <div className="footer">
+            <Button
+                endIcon={<Delete />}
+                variant="contained"
+                onClick={clearAll}
+            >
+              Clear
             </Button>
           </div>
         </div>
